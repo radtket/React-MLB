@@ -27,6 +27,9 @@
 
 
 /* Helpers */
+.yamm.navbar {
+  border-radius: 0;
+}
 .yamm .dropdown-menu {
   min-width: 600px;
 }
