@@ -68,12 +68,12 @@ class News extends Component {
 								<ul className="card__meta">
 									<li className="card__meta--item meta__item--views">2369</li>
 									<li className="card__meta--item meta__item--likes">
-										<a href="#">
+										<Link to="/like">
 											<i className="meta-like icon-heart" /> 530
-										</a>
+										</Link>
 									</li>
 									<li className="card__meta--item meta__item--comments">
-										<a href="#">18</a>
+										<Link to="/comments">18</Link>
 									</li>
 								</ul>
 							</footer>

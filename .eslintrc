@@ -29,6 +29,7 @@
     "global-require": "off",
     "semi": "warn",
     "function-paren-newline": 0,
+    "react/jsx-indent-props": [2, "tab"],
     "react/jsx-indent": [2, "tab"],
     "no-unused-vars": [
       1,

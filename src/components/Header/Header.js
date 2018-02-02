@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Nav, NavItem, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-import MegaMenu from '../../containers/MegaMenu';
+import MegaMenu from '../../containers/MegaMenu/MegaMenu';
 import logo from './mlb-logo.svg';
 
 const Header = () => (
