@@ -3,7 +3,7 @@ import { GET_TEAMS_ALL, SORT_TEAMS } from '../actions/actions-teams-all';
 const initialState = {
 	teamsAll: [],
 	teamsAllLoaded: false,
-	teamsLoadedAt: null,
+	teamsAllLoadedAt: null,
 	teamsSorted: [],
 	teamsSortedLoaded: false,
 };
@@ -16,7 +16,7 @@ export default function(state = initialState, action) {
 				...state,
 				teamsAll: data,
 				teamsAllLoaded: true,
-				teamsLoadedAt: new Date(),
+				teamsAllLoadedAt: new Date(),
 			};
 		case SORT_TEAMS:
 			return {

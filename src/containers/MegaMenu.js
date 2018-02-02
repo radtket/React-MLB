@@ -12,7 +12,7 @@ class MegaMenu extends Component {
 	async componentWillMount() {
 		const { teamsAll, teamsAllLoaded, sortTeamsLoaded } = this.props;
 		if (teamsAllLoaded && !sortTeamsLoaded) {
-			sortTeams(teamsAll);
+			this.props.sortTeams(teamsAll);
 		}
 	}
 	render() {
@@ -109,6 +109,7 @@ class MegaMenu extends Component {
 MegaMenu.propTypes = {
 	teamsSortedLoaded: PropTypes.bool.isRequired,
 	teamsSorted: PropTypes.arrayOf(PropTypes.array).isRequired,
+	sortTeams: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

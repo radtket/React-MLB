@@ -4,13 +4,13 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { getTeams } from '../actions/actions-teams-all';
 import Header from '../components/Header/Header';
-// import News from '../components/News/News';
+import News from './News/News';
 
 class App extends Component {
 	async componentDidMount() {
-		const { teamsAllLoaded, teamsLoadedAt } = this.props;
+		const { teamsAllLoaded, teamsAllLoadedAt } = this.props;
 		const oneHour = 60 * 60 * 1000;
-		if (!teamsAllLoaded || new Date() - teamsLoadedAt > oneHour) {
+		if (!teamsAllLoaded || new Date() - teamsAllLoadedAt > oneHour) {
 			this.props.getTeams();
 		}
 	}
@@ -23,7 +23,9 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Header />
-				{/* <News /> */}
+				<div className="container">
+					<News />
+				</div>
 			</div>
 		);
 	}
