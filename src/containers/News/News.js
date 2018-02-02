@@ -87,7 +87,7 @@ class News extends Component {
 
 News.propTypes = {
 	newsAllLoaded: PropTypes.bool.isRequired,
-	newsAll: PropTypes.arrayOf(PropTypes.array).isRequired,
+	newsAll: PropTypes.arrayOf(PropTypes.object).isRequired,
 	getNewsAll: PropTypes.func.isRequired,
 };
 

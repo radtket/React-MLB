@@ -10,8 +10,8 @@ import { sortTeams } from '../actions/actions-teams-all';
 
 class MegaMenu extends Component {
 	async componentWillMount() {
-		const { teamsAll, teamsAllLoaded, sortTeamsLoaded } = this.props;
-		if (teamsAllLoaded && !sortTeamsLoaded) {
+		const { teamsAll, teamsAllLoaded, teamsSortedLoaded } = this.props;
+		if (teamsAllLoaded && !teamsSortedLoaded) {
 			this.props.sortTeams(teamsAll);
 		}
 	}
