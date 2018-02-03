@@ -194,27 +194,23 @@
     margin-left: 15px;
   }
 }
-.card__meta--item::before {
-  font-size: 13px;
-  line-height: 1em;
+
+.card__meta--item {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.card__meta--item a,
+.card__meta--item span {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
   vertical-align: middle;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  font-family: "simple-line-icons";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  margin-right: 4px;
-  position: relative;
-  top: -1px;
+  margin-left: 4px;
 }
-@media (min-width: 992px) {
-  .card__meta--item::before {
-    margin-right: 8px;
-  }
-}
-.card__meta--item a {
+
+.card__meta--item a,
+.card__meta--item a svg {
   color: #9e9caa;
   -webkit-transition: color 0.2s ease;
   transition: color 0.2s ease;
@@ -224,6 +220,24 @@
   text-decoration: none;
   outline: none;
 }
+
+.card__meta--item svg {
+  fill: #9e9caa;
+  height: 100%;
+  left: 0;
+  height: 14px;
+  max-width: 12px;
+  position: relative;
+  top: 0;
+  overflow: visible;
+  vertical-align: middle;
+}
+
+.card__meta--item a:hover svg {
+  fill: #f92552;
+}
+
+
 .card__meta--item + .meta__item {
   margin-left: 8px;
 }
@@ -233,14 +247,6 @@
   }
 }
 
-.meta__item--views::before {
-  content: "\e087";
-}
-
-.meta__item--comments::before {
-  content: "\e07d";
-  font-size: 12px;
-}
 
 .meta__item--likes .meta-like {
   vertical-align: middle;

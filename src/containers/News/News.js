@@ -4,12 +4,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { getNewsAll } from '../../actions/actions-news';
-// import { chat } from './images/icons/chat.svg';
-// import { like } from './images/icons/like.svg';
-// import { message } from './images/icons/message.svg';
-// import { view } from './images/icons/view.svg';
-// import { Chat, like, message, view } from './iconss';
 import './News.css';
+import { Like, Comment, View } from './icons';
 
 class News extends Component {
 	async componentWillMount() {
@@ -66,14 +62,21 @@ class News extends Component {
 									</div>
 								</div>
 								<ul className="card__meta">
-									<li className="card__meta--item meta__item--views">2369</li>
+									<li className="card__meta--item meta__item--views">
+										<View />
+										<span>2369</span>
+									</li>
 									<li className="card__meta--item meta__item--likes">
 										<Link to="/like">
-											<i className="meta-like icon-heart" /> 530
+											<Like className="meta-like" />
+											<span>530</span>
 										</Link>
 									</li>
 									<li className="card__meta--item meta__item--comments">
-										<Link to="/comments">18</Link>
+										<Link to="/comments">
+											<Comment />
+											<span>18</span>
+										</Link>
 									</li>
 								</ul>
 							</footer>
