@@ -55,7 +55,10 @@ class News extends Component {
 							<footer className="card__footer">
 								<div className="card__author">
 									<figure className="card__author--avatar">
-										<img src="http://placehold.it/30x30" alt="Post Author Avatar" />
+										<img
+											src={`/images/reporters/${`${key.Author}`.replace(/\s/g, '')}.jpg`}
+											alt={`${key.Author} Avatar`}
+										/>
 									</figure>
 									<div className="card__author--info">
 										<h4 className="card__author--name">{key.Author}</h4>
