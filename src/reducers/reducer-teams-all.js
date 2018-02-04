@@ -1,4 +1,4 @@
-import { GET_TEAMS_ALL, SORT_TEAMS } from '../actions/actions-teams-all';
+import { GET_TEAMS_ALL, SORT_TEAMS, GET_TEAMS_STANDINGS } from '../actions/actions-teams-all';
 
 const initialState = {
 	teamsAll: [],
@@ -6,6 +6,8 @@ const initialState = {
 	teamsAllLoadedAt: null,
 	teamsSorted: [],
 	teamsSortedLoaded: false,
+	teamsStandings: [],
+	teamsStandingsLoaded: false,
 };
 
 export default function(state = initialState, action) {
@@ -23,6 +25,12 @@ export default function(state = initialState, action) {
 				...state,
 				teamsSorted: data,
 				teamsSortedLoaded: true,
+			};
+		case GET_TEAMS_STANDINGS:
+			return {
+				...state,
+				teamsStandings: data,
+				teamsStandingsLoaded: true,
 			};
 		default:
 			return state;

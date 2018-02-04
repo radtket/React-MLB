@@ -6,6 +6,7 @@ import { getTeams } from '../actions/actions-teams-all';
 import Header from '../components/Header/Header';
 import News from './News/News';
 import GameScore from './GameScore/GameScore';
+import Standings from './Standings/Standings';
 
 class App extends Component {
 	async componentDidMount() {
@@ -32,6 +33,8 @@ class App extends Component {
 						<News />
 					</div>
 				</div>
+
+				<Standings />
 			</div>
 		);
 	}
