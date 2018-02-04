@@ -25,9 +25,9 @@ class News extends Component {
 			return <h1>Loading</h1>;
 		}
 		return (
-			<section className="flex-container container">
+			<section className="flex-container">
 				{this.props.newsAll.map(key => (
-					<div key={key.NewsID} className="col-sm-6 col-md-4">
+					<div key={key.NewsID} className="col-sm-6">
 						<article key={key.NewsID} className="card">
 							<figure className="card__thumb">
 								<div className="card__cat">

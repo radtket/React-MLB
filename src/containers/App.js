@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { getTeams } from '../actions/actions-teams-all';
 import Header from '../components/Header/Header';
 import News from './News/News';
+import GameScore from './GameScore/GameScore';
 
 class App extends Component {
 	async componentDidMount() {
@@ -24,7 +25,12 @@ class App extends Component {
 			<div className="App">
 				<Header />
 				<div className="container">
-					<News />
+					<div className="col-md-4">
+						<GameScore />
+					</div>
+					<div className="col-md-8">
+						<News />
+					</div>
 				</div>
 			</div>
 		);

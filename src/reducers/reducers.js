@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import GamesAllReducer from './reducer-games';
 import TeamsAllReducer from './reducer-teams-all';
 import NewsAllReducer from './reducer-news';
 
@@ -10,6 +11,7 @@ import NewsAllReducer from './reducer-news';
 const rootReducer = combineReducers({
 	teams: TeamsAllReducer,
 	news: NewsAllReducer,
+	games: GamesAllReducer,
 });
 
 export default rootReducer;
