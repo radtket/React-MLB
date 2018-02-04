@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { getGamesDay } from '../../actions/actions-games';
 import './GameScore.css';
+import { oneHour } from '../../utils/helpers';
 
 class GameScore extends Component {
 	async componentWillMount() {
-		if (!this.props.gamesDayLoaded) {
+		const { gamesDayLoaded, gamesDayLoadedAt } = this.props;
+		if (!gamesDayLoaded || new Date() - gamesDayLoadedAt > oneHour) {
 			this.props.getGamesDay();
 		}
 	}

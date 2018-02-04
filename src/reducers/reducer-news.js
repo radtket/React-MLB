@@ -3,6 +3,7 @@ import { GET_NEWS_ALL } from '../actions/actions-news';
 const initialState = {
 	newsAll: [],
 	newsAllLoaded: false,
+	newsAllLoadedAt: null,
 };
 
 export default function(state = initialState, action) {
@@ -13,6 +14,7 @@ export default function(state = initialState, action) {
 				...state,
 				newsAll: data,
 				newsAllLoaded: true,
+				newsAllLoadedAt: new Date(),
 			};
 		default:
 			return state;

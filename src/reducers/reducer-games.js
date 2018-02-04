@@ -3,6 +3,7 @@ import { GET_GAMES_DAY } from '../actions/actions-games';
 const initialState = {
 	gamesDay: [],
 	gamesDayLoaded: false,
+	gamesDayLoadedAt: null,
 };
 
 export default function(state = initialState, action) {
@@ -13,6 +14,7 @@ export default function(state = initialState, action) {
 				...state,
 				gamesDay: data,
 				gamesDayLoaded: true,
+				gamesDayLoadedAt: new Date(),
 			};
 		default:
 			return state;

@@ -17,3 +17,5 @@ export function createGroupedArray(arr, chunkSize) {
 	}
 	return groups;
 }
+
+export const oneHour = 60 * 60 * 1000;

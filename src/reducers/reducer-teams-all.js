@@ -8,6 +8,7 @@ const initialState = {
 	teamsSortedLoaded: false,
 	teamsStandings: [],
 	teamsStandingsLoaded: false,
+	teamsStandingsLoadedAt: null,
 };
 
 export default function(state = initialState, action) {
@@ -31,6 +32,7 @@ export default function(state = initialState, action) {
 				...state,
 				teamsStandings: data,
 				teamsStandingsLoaded: true,
+				teamsStandingsLoadedAt: new Date(),
 			};
 		default:
 			return state;

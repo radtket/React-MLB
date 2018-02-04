@@ -6,11 +6,12 @@ import { bindActionCreators } from 'redux';
 import { getNewsAll } from '../../actions/actions-news';
 import './News.css';
 import { Like, Comment, View } from './icons';
+import { oneHour } from '../../utils/helpers';
 
 class News extends Component {
 	async componentWillMount() {
-		const { newsAllLoaded } = this.props;
-		if (!newsAllLoaded) {
+		const { newsAllLoaded, newsAllLoadedAt } = this.props;
+		if (!newsAllLoaded || new Date() - newsAllLoadedAt > oneHour) {
 			this.props.getNewsAll();
 		}
 	}

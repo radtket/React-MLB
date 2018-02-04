@@ -17,15 +17,16 @@ class MegaMenu extends Component {
 	}
 	render() {
 		const { teamsSortedLoaded, teamsSorted } = this.props;
+		const [AlCentral, AlEast, AlWest, NlCentral, NlEast, NlWest] = teamsSorted;
 		return (
 			<div className="yamm-content">
 				<div className="row">
 					<ul className="col-sm-4 list-unstyled mb-12">
 						<li>
-							<strong>AL West</strong>
+							<strong>{`${AlWest[0].League} ${AlWest[0].Division}`}</strong>
 						</li>
 						{teamsSortedLoaded &&
-							teamsSorted[2].map(key => (
+							AlWest.map(key => (
 								<LinkContainer to={`/${key.TeamID}`} key={key.TeamID}>
 									<MenuItem eventKey={`3.${key.TeamID}`} href="#">
 										{`${key.City} ${key.Name}`}
@@ -35,10 +36,10 @@ class MegaMenu extends Component {
 					</ul>
 					<ul className="col-sm-4 list-unstyled mb-12">
 						<li>
-							<strong>AL Central</strong>
+							<strong>{`${AlCentral[0].League} ${AlCentral[0].Division}`}</strong>
 						</li>
 						{teamsSortedLoaded &&
-							teamsSorted[0].map(key => (
+							AlCentral.map(key => (
 								<LinkContainer to={`/${key.TeamID}`} key={key.TeamID}>
 									<MenuItem eventKey={`3.${key.TeamID}`} href="#">
 										{`${key.City} ${key.Name}`}
@@ -48,10 +49,10 @@ class MegaMenu extends Component {
 					</ul>
 					<ul className="col-sm-4 list-unstyled mb-12">
 						<li>
-							<strong>AL East</strong>
+							<strong>{`${AlEast[0].League} ${AlEast[0].Division}`}</strong>
 						</li>
 						{teamsSortedLoaded &&
-							teamsSorted[1].map(key => (
+							AlEast.map(key => (
 								<LinkContainer to={`/${key.TeamID}`} key={key.TeamID}>
 									<MenuItem eventKey={`3.${key.TeamID}`} href="#">
 										{`${key.City} ${key.Name}`}
@@ -63,10 +64,10 @@ class MegaMenu extends Component {
 				<div className="row">
 					<ul className="col-sm-4 list-unstyled mb-12">
 						<li>
-							<strong>NL West</strong>
+							<strong>{`${NlWest[0].League} ${NlWest[0].Division}`}</strong>
 						</li>
 						{teamsSortedLoaded &&
-							teamsSorted[5].map(key => (
+							NlWest.map(key => (
 								<LinkContainer to={`/${key.TeamID}`} key={key.TeamID}>
 									<MenuItem eventKey={`3.${key.TeamID}`} href="#">
 										{`${key.City} ${key.Name}`}
@@ -76,10 +77,10 @@ class MegaMenu extends Component {
 					</ul>
 					<ul className="col-sm-4 list-unstyled mb-12">
 						<li>
-							<strong>NL Central</strong>
+							<strong>{`${NlCentral[0].League} ${NlCentral[0].Division}`}</strong>
 						</li>
 						{teamsSortedLoaded &&
-							teamsSorted[3].map(key => (
+							NlCentral.map(key => (
 								<LinkContainer to={`/${key.TeamID}`} key={key.TeamID}>
 									<MenuItem eventKey={`3.${key.TeamID}`} href="#">
 										{`${key.City} ${key.Name}`}
@@ -89,10 +90,10 @@ class MegaMenu extends Component {
 					</ul>
 					<ul className="col-sm-4 list-unstyled mb-12">
 						<li>
-							<strong>NL East</strong>
+							<strong>{`${NlEast[0].League} ${NlEast[0].Division}`}</strong>
 						</li>
 						{teamsSortedLoaded &&
-							teamsSorted[4].map(key => (
+							NlEast.map(key => (
 								<LinkContainer to={`/${key.TeamID}`} key={key.TeamID}>
 									<MenuItem eventKey={`3.${key.TeamID}`} href="#">
 										{`${key.City} ${key.Name}`}

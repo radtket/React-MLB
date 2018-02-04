@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { getTeams } from '../actions/actions-teams-all';
 import Header from '../components/Header/Header';
+import Home from './Home';
 import News from './News/News';
 import GameScore from './GameScore/GameScore';
 import Standings from './Standings/Standings';
+import { oneHour } from '../utils/helpers';
 
 class App extends Component {
 	async componentDidMount() {
 		const { teamsAllLoaded, teamsAllLoadedAt } = this.props;
-		const oneHour = 60 * 60 * 1000;
 		if (!teamsAllLoaded || new Date() - teamsAllLoadedAt > oneHour) {
 			this.props.getTeams();
 		}
@@ -25,16 +27,12 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Header />
-				<div className="container">
-					<div className="col-md-4">
-						<GameScore />
-					</div>
-					<div className="col-md-8">
-						<News />
-					</div>
-				</div>
-
-				<Standings />
+				<Switch>
+					<Route exact path="/" component={Home} />
+					<Route path="/scores" component={GameScore} />
+					<Route path="/standings" component={Standings} />
+					<Route path="/news" component={News} />
+				</Switch>
 			</div>
 		);
 	}
@@ -58,4 +56,4 @@ const mapDispatchToProps = dispatch =>
 		dispatch
 	);
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(App);
