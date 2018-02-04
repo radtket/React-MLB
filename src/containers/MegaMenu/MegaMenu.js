@@ -27,8 +27,8 @@ class MegaMenu extends Component {
 						</li>
 						{teamsSortedLoaded &&
 							AlWest.map(key => (
-								<LinkContainer to={`/${key.TeamID}`} key={key.TeamID}>
-									<MenuItem eventKey={`3.${key.TeamID}`} href="#">
+								<LinkContainer to={`/teams/${key.Key}`} key={key.TeamID}>
+									<MenuItem eventKey={`3.${key.TeamID}`} href={`/teams/${key.Key}`}>
 										{`${key.City} ${key.Name}`}
 									</MenuItem>
 								</LinkContainer>
@@ -40,8 +40,8 @@ class MegaMenu extends Component {
 						</li>
 						{teamsSortedLoaded &&
 							AlCentral.map(key => (
-								<LinkContainer to={`/${key.TeamID}`} key={key.TeamID}>
-									<MenuItem eventKey={`3.${key.TeamID}`} href="#">
+								<LinkContainer to={`/teams/${key.Key}`} key={key.TeamID}>
+									<MenuItem eventKey={`3.${key.TeamID}`} href={`/teams/${key.Key}`}>
 										{`${key.City} ${key.Name}`}
 									</MenuItem>
 								</LinkContainer>
@@ -53,8 +53,8 @@ class MegaMenu extends Component {
 						</li>
 						{teamsSortedLoaded &&
 							AlEast.map(key => (
-								<LinkContainer to={`/${key.TeamID}`} key={key.TeamID}>
-									<MenuItem eventKey={`3.${key.TeamID}`} href="#">
+								<LinkContainer to={`/teams/${key.Key}`} key={key.TeamID}>
+									<MenuItem eventKey={`3.${key.TeamID}`} href={`/teams/${key.Key}`}>
 										{`${key.City} ${key.Name}`}
 									</MenuItem>
 								</LinkContainer>
@@ -68,8 +68,8 @@ class MegaMenu extends Component {
 						</li>
 						{teamsSortedLoaded &&
 							NlWest.map(key => (
-								<LinkContainer to={`/${key.TeamID}`} key={key.TeamID}>
-									<MenuItem eventKey={`3.${key.TeamID}`} href="#">
+								<LinkContainer to={`/teams/${key.Key}`} key={key.TeamID}>
+									<MenuItem eventKey={`3.${key.TeamID}`} href={`/teams/${key.Key}`}>
 										{`${key.City} ${key.Name}`}
 									</MenuItem>
 								</LinkContainer>
@@ -81,8 +81,8 @@ class MegaMenu extends Component {
 						</li>
 						{teamsSortedLoaded &&
 							NlCentral.map(key => (
-								<LinkContainer to={`/${key.TeamID}`} key={key.TeamID}>
-									<MenuItem eventKey={`3.${key.TeamID}`} href="#">
+								<LinkContainer to={`/teams/${key.Key}`} key={key.TeamID}>
+									<MenuItem eventKey={`3.${key.TeamID}`} href={`/teams/${key.Key}`}>
 										{`${key.City} ${key.Name}`}
 									</MenuItem>
 								</LinkContainer>
@@ -94,8 +94,8 @@ class MegaMenu extends Component {
 						</li>
 						{teamsSortedLoaded &&
 							NlEast.map(key => (
-								<LinkContainer to={`/${key.TeamID}`} key={key.TeamID}>
-									<MenuItem eventKey={`3.${key.TeamID}`} href="#">
+								<LinkContainer to={`/teams/${key.Key}`} key={key.TeamID}>
+									<MenuItem eventKey={`3.${key.TeamID}`} href={`/teams/${key.Key}`}>
 										{`${key.City} ${key.Name}`}
 									</MenuItem>
 								</LinkContainer>

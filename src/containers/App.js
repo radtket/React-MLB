@@ -9,6 +9,7 @@ import Home from './Home';
 import News from './News/News';
 import GameScore from './GameScore/GameScore';
 import Standings from './Standings/Standings';
+import Team from './Team/Team';
 import { oneHour } from '../utils/helpers';
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route path="/scores" component={GameScore} />
+					<Route path="/teams/:teamAbrv" component={Team} />
 					<Route path="/standings" component={Standings} />
 					<Route path="/news" component={News} />
 				</Switch>
