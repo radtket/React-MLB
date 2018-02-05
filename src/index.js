@@ -18,6 +18,7 @@ import rootReducer from './reducers/reducers';
 const middleware = [logger, thunk];
 
 const store = createStore(rootReducer, load(), composeWithDevTools(applyMiddleware(...middleware, save())));
+// const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middleware)));
 
 render(
 	<Provider store={store}>

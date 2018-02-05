@@ -11,7 +11,7 @@ class Standings extends Component {
 		const { teamsStandingsLoaded } = this.props;
 		if (!teamsStandingsLoaded) {
 			const currentYear = new Date().getFullYear();
-			this.props.getTeamsStandings(currentYear);
+			this.props.getTeamsStandings(currentYear - 1);
 		}
 	}
 	render() {

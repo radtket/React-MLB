@@ -1,4 +1,4 @@
-import { GET_TEAMS_ALL, SORT_TEAMS, GET_TEAMS_STANDINGS } from '../actions/actions-teams-all';
+import { GET_TEAMS_ALL, SORT_TEAMS, GET_TEAMS_STANDINGS, GET_TEAM_LOGOS } from '../actions/actions-teams-all';
 
 const initialState = {
 	teamsAll: [],
@@ -9,6 +9,9 @@ const initialState = {
 	teamsStandings: [],
 	teamsStandingsLoaded: false,
 	teamsStandingsLoadedAt: null,
+	teamsLogos: [],
+	teamsLogosLoaded: false,
+	teamsLogosLoadedAt: null,
 };
 
 export default function(state = initialState, action) {
@@ -33,6 +36,13 @@ export default function(state = initialState, action) {
 				teamsStandings: data,
 				teamsStandingsLoaded: true,
 				teamsStandingsLoadedAt: new Date(),
+			};
+		case GET_TEAM_LOGOS:
+			return {
+				...state,
+				teamsLogos: data,
+				teamsLogosLoaded: true,
+				teamsLogosLoadedAt: new Date(),
 			};
 		default:
 			return state;

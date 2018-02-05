@@ -1,0 +1,39 @@
+table.table-standings tbody td,
+table.table-standings thead th {
+  font-size: 12px;
+  line-height: 1;
+  vertical-align: middle;
+  text-align: center;
+}
+
+table.table-standings tbody td:first-of-type,
+table.table-standings thead th:first-of-type {
+  text-align: left;
+}
+table.table-standings thead th {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.standings--team {
+  text-align: left;
+}
+@media (min-width: 1200px) {
+  .standings--team {
+    width: 170px;
+  }
+}
+.standings--team__logo {
+  width: 2em;
+  height: 2em;
+  margin-right: 0.5em;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+.standings--team__logo img {
+  width: auto;
+  height: auto;
+  max-width: 2em;
+  max-height: 2em;
+}

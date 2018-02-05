@@ -6,18 +6,27 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 import './MegaMenu.css';
-import { sortTeams } from '../../actions/actions-teams-all';
+import { sortTeams, getTeams } from '../../actions/actions-teams-all';
 
 class MegaMenu extends Component {
 	async componentWillMount() {
 		const { teamsAll, teamsAllLoaded, teamsSortedLoaded } = this.props;
-		if (teamsAllLoaded && !teamsSortedLoaded) {
+		if (!teamsAllLoaded) {
+			this.props.getTeams(teamsAll);
+		} else if (teamsAllLoaded && !teamsSortedLoaded) {
 			this.props.sortTeams(teamsAll);
 		}
 	}
 	render() {
 		const { teamsSortedLoaded, teamsSorted } = this.props;
 		const [AlCentral, AlEast, AlWest, NlCentral, NlEast, NlWest] = teamsSorted;
+		if (!teamsSortedLoaded) {
+			return (
+				<div>
+					<h1>Loading</h1>
+				</div>
+			);
+		}
 		return (
 			<div className="yamm-content">
 				<div className="row">
@@ -124,6 +133,7 @@ const mapDispatchToProps = dispatch =>
 	bindActionCreators(
 		{
 			sortTeams,
+			getTeams,
 		},
 		dispatch
 	);

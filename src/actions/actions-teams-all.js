@@ -4,6 +4,7 @@ import { createGroupedArray, propComparator } from '../utils/helpers';
 export const GET_TEAMS_ALL = 'GET_TEAMS_ALL';
 export const SORT_TEAMS = 'SORT_TEAMS';
 export const GET_TEAMS_STANDINGS = 'GET_TEAMS_STANDINGS';
+export const GET_TEAM_LOGOS = 'GET_TEAM_LOGOS';
 
 export function getTeams() {
 	return async function(dispatch) {
@@ -28,6 +29,25 @@ export function sortTeams(arg) {
 		return dispatch({
 			type: SORT_TEAMS,
 			data: divisions,
+		});
+	};
+}
+
+export function getTeamLogos(arg) {
+	return async function(dispatch) {
+		const logos = arg.reduce((teamLogos, team) => {
+			// teamLogos[`${team.Key}`] = teamLogos[`${team.Key}`] || [];
+			// teamLogos[`${team.Key}`].push(`${team.WikipediaLogoUrl}`);
+			// console.log(teamLogos);
+
+			teamLogos.push({
+				[`${team.Key}`]: team.WikipediaLogoUrl,
+			});
+			return teamLogos;
+		}, []);
+		return dispatch({
+			type: GET_TEAM_LOGOS,
+			data: logos,
 		});
 	};
 }
