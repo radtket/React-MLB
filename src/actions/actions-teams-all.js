@@ -33,18 +33,13 @@ export function sortTeams(arg) {
 	};
 }
 
-export function getTeamLogos(arg) {
-	return async function(dispatch) {
-		const logos = arg.reduce((teamLogos, team) => {
-			// teamLogos[`${team.Key}`] = teamLogos[`${team.Key}`] || [];
-			// teamLogos[`${team.Key}`].push(`${team.WikipediaLogoUrl}`);
-			// console.log(teamLogos);
-
-			teamLogos.push({
-				[`${team.Key}`]: team.WikipediaLogoUrl,
-			});
-			return teamLogos;
-		}, []);
+export function getTeamLogos() {
+	return async function(dispatch, getState) {
+		const { teamsAll } = await getState().teams;
+		const logos = await teamsAll.reduce((obj, i) => {
+			obj[i.Key] = i.WikipediaLogoUrl;
+			return obj;
+		}, {});
 		return dispatch({
 			type: GET_TEAM_LOGOS,
 			data: logos,
