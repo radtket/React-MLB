@@ -6,22 +6,20 @@ import { bindActionCreators } from 'redux';
 import { getNewsAll } from '../../actions/actions-news';
 import './News.css';
 import { Like, Comment, View } from './icons';
-import { oneHour } from '../../utils/helpers';
+import { randoNumber } from '../../utils/helpers';
 
 class News extends Component {
 	async componentWillMount() {
-		const { newsAllLoaded, newsAllLoadedAt } = this.props;
-		if (!newsAllLoaded || new Date() - newsAllLoadedAt > oneHour) {
+		const { newsAllLoaded } = this.props;
+		if (!newsAllLoaded) {
 			this.props.getNewsAll();
 		}
+		// const { newsAllLoaded, newsAllLoadedAt } = this.props;
+		// if (!newsAllLoaded || new Date() - newsAllLoadedAt > oneHour) {
+		// 	this.props.getNewsAll();
+		// }
 	}
 	render() {
-		// if (this.state.requestFailed) {
-		// 	return <p>Failed</p>;
-		// }
-		// if (!this.state.news) {
-		// 	return <p>...Loading</p>;
-		// }
 		if (!this.props.newsAllLoaded) {
 			return <h1>Loading</h1>;
 		}
@@ -68,18 +66,18 @@ class News extends Component {
 								<ul className="card__meta">
 									<li className="card__meta--item meta__item--views">
 										<View />
-										<span>2369</span>
+										<span>{randoNumber(2369)}</span>
 									</li>
 									<li className="card__meta--item meta__item--likes">
 										<Link to="/like">
 											<Like className="meta-like" />
-											<span>530</span>
+											<span>{randoNumber(500)}</span>
 										</Link>
 									</li>
 									<li className="card__meta--item meta__item--comments">
 										<Link to="/comments">
 											<Comment />
-											<span>18</span>
+											<span>{randoNumber(40)}</span>
 										</Link>
 									</li>
 								</ul>

@@ -9,6 +9,10 @@ export function propComparator(propArg) {
 	};
 }
 
+export function randoNumber(range) {
+	return Math.floor(Math.random() * range);
+}
+
 export function createGroupedArray(arr, chunkSize) {
 	const groups = [];
 	let i;
