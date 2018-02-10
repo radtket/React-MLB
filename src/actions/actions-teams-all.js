@@ -17,9 +17,10 @@ export function getTeams() {
 	};
 }
 
-export function sortTeams(arg) {
-	return async function(dispatch) {
-		const orderedLeague = await arg.sort(propComparator('League'));
+export function sortTeams() {
+	return async function(dispatch, getState) {
+		const { teamsAll } = await getState().teams;
+		const orderedLeague = await teamsAll.sort(propComparator('League'));
 
 		const combined = [
 			...orderedLeague.slice(0, 15).sort(propComparator('Division')),

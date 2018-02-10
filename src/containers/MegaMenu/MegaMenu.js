@@ -6,15 +6,13 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 import './MegaMenu.css';
-import { sortTeams, getTeams } from '../../actions/actions-teams-all';
+import { sortTeams } from '../../actions/actions-teams-all';
 
 class MegaMenu extends Component {
 	async componentWillMount() {
-		const { teamsAll, teamsAllLoaded, teamsSortedLoaded } = this.props;
-		if (!teamsAllLoaded) {
-			this.props.getTeams(teamsAll);
-		} else if (teamsAllLoaded && !teamsSortedLoaded) {
-			this.props.sortTeams(teamsAll);
+		const { teamsSortedLoaded } = this.props;
+		if (!teamsSortedLoaded) {
+			this.props.sortTeams();
 		}
 	}
 	render() {
@@ -123,8 +121,6 @@ MegaMenu.propTypes = {
 };
 
 const mapStateToProps = state => ({
-	teamsAll: state.teams.teamsAll,
-	teamsAllLoaded: state.teams.teamsAllLoaded,
 	teamsSorted: state.teams.teamsSorted,
 	teamsSortedLoaded: state.teams.teamsSortedLoaded,
 });
@@ -133,7 +129,6 @@ const mapDispatchToProps = dispatch =>
 	bindActionCreators(
 		{
 			sortTeams,
-			getTeams,
 		},
 		dispatch
 	);

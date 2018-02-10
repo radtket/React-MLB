@@ -9,18 +9,20 @@ import './Standings.css';
 
 class Standings extends Component {
 	async componentWillMount() {
-		const { teamsStandingsLoaded } = this.props;
+		const { teamsStandingsLoaded, teamsLogosLoaded } = this.props;
 		if (!teamsStandingsLoaded) {
 			const currentYear = new Date().getFullYear();
 			this.props.getTeamsStandings(currentYear - 1);
+		} else if (teamsStandingsLoaded && !teamsLogosLoaded) {
+			this.props.getTeamLogos();
 		}
-		this.props.getTeamLogos();
 	}
 	render() {
-		const { teamsStandings, teamsLogos, teamsLogosLoaded } = this.props;
-		if (!teamsLogosLoaded) {
-			return <p>loading</p>;
-		}
+		const { teamsStandings, teamsLogos } = this.props;
+
+		// if (!teamsLogosLoaded) {
+		// 	return <p>loading</p>;
+		// }
 		const groupSize = 5;
 		const teamRows = teamsStandings
 			.map(item => (
@@ -56,7 +58,6 @@ Standings.propTypes = {
 	teamsStandings: PropTypes.arrayOf(PropTypes.object).isRequired,
 	getTeamsStandings: PropTypes.func.isRequired,
 	getTeamLogos: PropTypes.func.isRequired,
-	teamsLogos: PropTypes.objectOf(PropTypes.string).isRequired,
 	teamsLogosLoaded: PropTypes.bool.isRequired,
 };
 
