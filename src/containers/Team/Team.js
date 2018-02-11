@@ -8,11 +8,17 @@ import Header from '../../components/Team/Header/Header';
 class Team extends Component {
 	componentWillMount() {
 		const { teamAbrv } = this.props.match.params;
-		this.props.getSingleTeam(teamAbrv);
-
-		// if (!this.props.singleTeamLoaded) {
-		// 	this.props.getSingleTeam(teamAbrv);
-		// }
+		const { singleTeam, singleTeamLoaded } = this.props;
+		if (!singleTeamLoaded || singleTeam.Key !== teamAbrv) {
+			this.props.getSingleTeam(teamAbrv);
+		}
+	}
+	componentDidUpdate() {
+		const { teamAbrv } = this.props.match.params;
+		const { singleTeam } = this.props;
+		if (singleTeam.Key !== teamAbrv) {
+			this.props.getSingleTeam(teamAbrv);
+		}
 	}
 	render() {
 		const { City, Name, WikipediaLogoUrl, WikipediaWordMarkUrl, PrimaryColor, SecondaryColor } = this.props.singleTeam;
@@ -49,7 +55,7 @@ Team.propTypes = {
 		SecondaryColor: PropTypes.string,
 	}).isRequired,
 	getSingleTeam: PropTypes.func.isRequired,
-	// singleTeamLoaded: PropTypes.bool.isRequired,
+	singleTeamLoaded: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
