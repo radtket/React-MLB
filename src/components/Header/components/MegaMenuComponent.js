@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 import './MegaMenu.css';
-import { sortTeams } from '../../actions/actions-teams-all';
+import { sortTeams } from '../../../actions/actions-teams-all';
 
 class MegaMenu extends Component {
 	async componentWillMount() {

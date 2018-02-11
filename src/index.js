@@ -10,7 +10,7 @@ import thunk from 'redux-thunk';
 
 import 'normalize.css/normalize.css';
 import './index.css';
-import App from './containers/App';
+import App from './App';
 import registerServiceWorker from './utils/registerServiceWorker';
 
 import rootReducer from './reducers/reducers';

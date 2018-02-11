@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getSingleTeam, resetSingleTeam } from '../../actions/actions-teams-all';
-import Header from '../../components/Team/Header/Header';
+import Header from './components/HeaderComponent';
 
 class Team extends Component {
 	async componentWillMount() {

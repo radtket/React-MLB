@@ -3,14 +3,15 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { getTeams } from '../actions/actions-teams-all';
-import Header from '../components/Header/Header';
-import Home from './Home';
-import News from './News/News';
-import GameScore from './GameScore/GameScore';
-import Standings from './Standings/Standings';
-import Team from './Team/Team';
-import { oneHour } from '../utils/helpers';
+import { getTeams } from './actions/actions-teams-all';
+import Header from './components/Header/Header';
+import Home from './app/home/HomeContainer.js';
+import Standings from './app/standings/StandingsContainer';
+import GameScore from './app/scores/ScoresContainer';
+import Team from './app/team/TeamContainer';
+import News from './app/news/NewsContainer';
+
+import { oneHour } from './utils/helpers';
 
 class App extends Component {
 	async componentDidMount() {

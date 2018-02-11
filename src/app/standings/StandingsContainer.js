@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import StandingsSingleTeam from './Standings_SingleTeam';
-import StandingsDivision from './Standings_Division';
+import StandingsSingleTeam from './components/SingleTeamComponent';
+import StandingsDivision from './components/DivisionComponent';
 import { getTeamsStandings, getTeamLogos } from '../../actions/actions-teams-all';
 import './Standings.css';
 

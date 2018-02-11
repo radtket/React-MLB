@@ -1,5 +1,5 @@
 import React from 'react';
-import Marquee from './Marquee/Marquee';
+import Marquee from '../../components/Marquee/Marquee';
 
 const Home = () => (
 	<div>
