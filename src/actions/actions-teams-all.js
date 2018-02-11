@@ -6,6 +6,7 @@ export const SORT_TEAMS = 'SORT_TEAMS';
 export const GET_TEAMS_STANDINGS = 'GET_TEAMS_STANDINGS';
 export const GET_TEAM_LOGOS = 'GET_TEAM_LOGOS';
 export const GET_SINGLE_TEAM = 'GET_SINGLE_TEAM';
+export const RESET_SINGLE_TEAM = 'RESET_SINGLE_TEAM';
 
 export function getTeams() {
 	return async function(dispatch) {
@@ -68,5 +69,11 @@ export function getSingleTeam(teamArg) {
 			type: GET_SINGLE_TEAM,
 			data: singleTeam,
 		});
+	};
+}
+
+export function resetSingleTeam() {
+	return {
+		type: RESET_SINGLE_TEAM,
 	};
 }

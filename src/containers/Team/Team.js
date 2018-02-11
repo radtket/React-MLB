@@ -2,23 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getSingleTeam } from '../../actions/actions-teams-all';
+import { getSingleTeam, resetSingleTeam } from '../../actions/actions-teams-all';
 import Header from '../../components/Team/Header/Header';
 
 class Team extends Component {
-	componentWillMount() {
+	async componentWillMount() {
 		const { teamAbrv } = this.props.match.params;
-		const { singleTeam, singleTeamLoaded } = this.props;
-		if (!singleTeamLoaded || singleTeam.Key !== teamAbrv) {
+		this.props.getSingleTeam(teamAbrv);
+	}
+	componentWillUpdate(nextProps) {
+		if (nextProps.singleTeam.Key !== nextProps.match.params.teamAbrv) {
+			const { teamAbrv } = nextProps.match.params;
 			this.props.getSingleTeam(teamAbrv);
 		}
 	}
-	componentDidUpdate() {
-		const { teamAbrv } = this.props.match.params;
-		const { singleTeam } = this.props;
-		if (singleTeam.Key !== teamAbrv) {
-			this.props.getSingleTeam(teamAbrv);
-		}
+	componentWillUnmount() {
+		this.props.resetSingleTeam();
 	}
 	render() {
 		const { City, Name, WikipediaLogoUrl, WikipediaWordMarkUrl, PrimaryColor, SecondaryColor } = this.props.singleTeam;
@@ -46,16 +45,16 @@ Team.propTypes = {
 			teamAbrv: PropTypes.string.isRequired,
 		}).isRequired,
 	}).isRequired,
+	getSingleTeam: PropTypes.func.isRequired,
 	singleTeam: PropTypes.shape({
-		City: PropTypes.string.isRequired,
-		Name: PropTypes.string.isRequired,
-		WikipediaLogoUrl: PropTypes.string.isRequired,
+		City: PropTypes.string,
+		Name: PropTypes.string,
+		WikipediaLogoUrl: PropTypes.string,
 		WikipediaWordMarkUrl: PropTypes.string,
-		PrimaryColor: PropTypes.string.isRequired,
+		PrimaryColor: PropTypes.string,
 		SecondaryColor: PropTypes.string,
 	}).isRequired,
-	getSingleTeam: PropTypes.func.isRequired,
-	singleTeamLoaded: PropTypes.bool.isRequired,
+	resetSingleTeam: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -67,6 +66,7 @@ const mapDispatchToProps = dispatch =>
 	bindActionCreators(
 		{
 			getSingleTeam,
+			resetSingleTeam,
 		},
 		dispatch
 	);

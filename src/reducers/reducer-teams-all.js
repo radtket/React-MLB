@@ -4,6 +4,7 @@ import {
 	GET_TEAMS_STANDINGS,
 	GET_TEAM_LOGOS,
 	GET_SINGLE_TEAM,
+	RESET_SINGLE_TEAM,
 } from '../actions/actions-teams-all';
 
 const initialState = {
@@ -15,7 +16,7 @@ const initialState = {
 	teamsStandings: [],
 	teamsStandingsLoaded: false,
 	teamsStandingsLoadedAt: null,
-	teamsLogos: [],
+	teamsLogos: {},
 	teamsLogosLoaded: false,
 	teamsLogosLoadedAt: null,
 	singleTeam: {},
@@ -59,6 +60,12 @@ export default function(state = initialState, action) {
 				singleTeam: data,
 				singleTeamLoaded: true,
 				singleTeamLoadedAt: new Date(),
+			};
+		case RESET_SINGLE_TEAM:
+			return {
+				...state,
+				singleTeam: {},
+				singleTeamLoaded: false,
 			};
 		default:
 			return state;

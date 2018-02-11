@@ -26,17 +26,12 @@ const Header = props => (
 export default Header;
 
 Header.propTypes = {
-	colorPrimary: PropTypes.string.isRequired,
+	colorPrimary: PropTypes.string,
 	colorSecondary: PropTypes.string,
-	logoPrimary: PropTypes.string.isRequired,
+	logoPrimary: PropTypes.string,
 	logoSecondary: PropTypes.string,
-	teamCity: PropTypes.string.isRequired,
-	teamName: PropTypes.string.isRequired,
-};
-
-Header.defaultProps = {
-	colorSecondary: Header.propTypes.colorPrimary,
-	logoSecondary: Header.propTypes.logoPrimary,
+	teamCity: PropTypes.string,
+	teamName: PropTypes.string,
 };
 
 const TeamHeader = styled.header`
