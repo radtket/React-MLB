@@ -5,6 +5,7 @@ export const GET_TEAMS_ALL = 'GET_TEAMS_ALL';
 export const SORT_TEAMS = 'SORT_TEAMS';
 export const GET_TEAMS_STANDINGS = 'GET_TEAMS_STANDINGS';
 export const GET_TEAM_LOGOS = 'GET_TEAM_LOGOS';
+export const GET_SINGLE_TEAM = 'GET_SINGLE_TEAM';
 
 export function getTeams() {
 	return async function(dispatch) {
@@ -55,6 +56,17 @@ export function getTeamsStandings(year) {
 		return dispatch({
 			type: GET_TEAMS_STANDINGS,
 			data: teamsStandings,
+		});
+	};
+}
+
+export function getSingleTeam(teamArg) {
+	return async function(dispatch, getState) {
+		const { teamsAll } = await getState().teams;
+		const singleTeam = await teamsAll.find(team => team.Key === teamArg);
+		return dispatch({
+			type: GET_SINGLE_TEAM,
+			data: singleTeam,
 		});
 	};
 }
