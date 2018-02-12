@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getSingleTeam, resetSingleTeam } from '../../actions/actions-teams-all';
 import Header from './components/HeaderComponent';
+import TeamNav from './components/TeamNavComponent';
+
+// Inidividual Sub Pages
+import Roster from './roster/RosterContainer';
+import Stats from './stats/StatsContainer';
+import Schedule from './schedule/ScheduleContainer';
 
 class Team extends Component {
 	async componentWillMount() {
@@ -20,6 +27,7 @@ class Team extends Component {
 		this.props.resetSingleTeam();
 	}
 	render() {
+		const { url } = this.props.match;
 		const { City, Name, WikipediaLogoUrl, WikipediaWordMarkUrl, PrimaryColor, SecondaryColor } = this.props.singleTeam;
 		return (
 			<div>
@@ -32,7 +40,12 @@ class Team extends Component {
 					colorSecondary={SecondaryColor}
 				/>
 				<div className="container">
-					<h1>{this.props.match.params.teamAbrv}</h1>
+					<TeamNav teamPath={url} />
+				</div>
+				<div className="container">
+					<Route exact path={`${url}/stats`} component={Stats} />
+					<Route exact path={`${url}/schedule`} component={Schedule} />
+					<Route exact path={`${url}/roster`} component={Roster} />
 				</div>
 			</div>
 		);
@@ -41,6 +54,7 @@ class Team extends Component {
 
 Team.propTypes = {
 	match: PropTypes.shape({
+		url: PropTypes.string.isRequired,
 		params: PropTypes.shape({
 			teamAbrv: PropTypes.string.isRequired,
 		}).isRequired,
