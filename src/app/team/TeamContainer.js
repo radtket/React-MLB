@@ -39,9 +39,7 @@ class Team extends Component {
 					colorPrimary={PrimaryColor}
 					colorSecondary={SecondaryColor}
 				/>
-				<div className="container">
-					<TeamNav teamPath={url} />
-				</div>
+				<TeamNav teamPath={url} />
 				<div className="container">
 					<Route exact path={`${url}/stats`} component={Stats} />
 					<Route exact path={`${url}/schedule`} component={Schedule} />
