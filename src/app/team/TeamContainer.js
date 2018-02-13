@@ -8,6 +8,7 @@ import Header from './components/HeaderComponent';
 import TeamNav from './components/TeamNavComponent';
 
 // Inidividual Sub Pages
+import Home from './home/HomeContainer';
 import Roster from './roster/RosterContainer';
 import Stats from './stats/StatsContainer';
 import Schedule from './schedule/ScheduleContainer';
@@ -28,7 +29,16 @@ class Team extends Component {
 	}
 	render() {
 		const { url } = this.props.match;
-		const { City, Name, WikipediaLogoUrl, WikipediaWordMarkUrl, PrimaryColor, SecondaryColor } = this.props.singleTeam;
+		const {
+			City,
+			Name,
+			WikipediaLogoUrl,
+			WikipediaWordMarkUrl,
+			PrimaryColor,
+			SecondaryColor,
+			League,
+			Division,
+		} = this.props.singleTeam;
 		return (
 			<div>
 				<Header
@@ -41,6 +51,11 @@ class Team extends Component {
 				/>
 				<TeamNav teamPath={url} />
 				<div className="container">
+					<Route
+						exact
+						path={`${url}`}
+						render={() => <Home num="2" currentTeamLeague={League} currentTeamDivision={Division} />}
+					/>
 					<Route exact path={`${url}/stats`} component={Stats} />
 					<Route exact path={`${url}/schedule`} component={Schedule} />
 					<Route exact path={`${url}/roster`} component={Roster} />
@@ -65,6 +80,8 @@ Team.propTypes = {
 		WikipediaWordMarkUrl: PropTypes.string,
 		PrimaryColor: PropTypes.string,
 		SecondaryColor: PropTypes.string,
+		League: PropTypes.string,
+		Division: PropTypes.string,
 	}).isRequired,
 	resetSingleTeam: PropTypes.func.isRequired,
 };

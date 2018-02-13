@@ -13,7 +13,7 @@ const StandingsSingleTeam = props => {
 			</td>
 			<td>{Wins}</td>
 			<td>{Losses}</td>
-			<td>{(Number(`${Wins}`) / 162).toFixed(3).replace(/^0+/, '')}</td>
+			<td>{(Number(`${Wins}`) / (Number(`${Wins}`) + Number(`${Losses}`))).toFixed(3).replace(/^0+/, '')}</td>
 			<td>{GamesBehind ? (Math.round(`${GamesBehind}` * 2) / 2).toFixed(1) : '-'}</td>
 			<td>{`${HomeWins} - ${HomeLosses}`}</td>
 			<td>{`${AwayWins} - ${AwayLosses}`}</td>
