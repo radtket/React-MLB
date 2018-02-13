@@ -86,6 +86,7 @@
 .card__team--logo {
   display: block;
   height: 40px;
+  width: 40px;
   margin: 5px auto;
 }
 .card time {
