@@ -58,7 +58,11 @@ class Team extends Component {
 					/>
 					<Route exact path={`${url}/stats`} component={Stats} />
 					<Route exact path={`${url}/schedule`} component={Schedule} />
-					<Route exact path={`${url}/roster`} component={Roster} />
+					<Route
+						exact
+						path={`${url}/roster`}
+						render={() => <Roster currentTeam={this.props.match.params.teamAbrv} />}
+					/>
 				</div>
 			</div>
 		);
