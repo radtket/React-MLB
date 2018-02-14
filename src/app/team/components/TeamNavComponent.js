@@ -30,6 +30,11 @@ const TeamNav = props => {
 							Roster
 						</NavItem>
 					</IndexLinkContainer>
+					<IndexLinkContainer to={`${teamPath}/stadium`}>
+						<NavItem eventKey={5} title="Stadium">
+							Stadium
+						</NavItem>
+					</IndexLinkContainer>
 				</Nav>
 			</div>
 		</section>

@@ -15,7 +15,7 @@ class TeamStandings extends Component {
 		}
 	}
 	render() {
-		const { currentTeamDivision, currentTeamLeague, teamsStandings } = this.props;
+		const { currentTeamDivision, currentTeamLeague, teamsStandings, teamsLogos } = this.props;
 		const divisionTeams = teamsStandings.filter(
 			item => item.Division === currentTeamDivision && item.League === currentTeamLeague
 		);
@@ -39,7 +39,7 @@ class TeamStandings extends Component {
 									<td className="team-inline">
 										<div className="team-figure">
 											<span className="standings--team__logo">
-												<img src={this.props.teamsLogos[`${item.Key}`]} alt={`${item.City} Logo`} />
+												<img src={teamsLogos[`${item.Key}`]} alt={`${item.City} Logo`} />
 											</span>
 										</div>
 										<div className="team-title">
