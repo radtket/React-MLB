@@ -1,32 +1,55 @@
 import React, { Component } from 'react';
-import Moment from 'react-moment';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import moment from 'moment';
+import { getGamesDay } from '../../../../actions/actions-games';
+
 import './Games.css';
 
-class componentName extends Component {
+class Games extends Component {
 	state = {
-		clicks: 0,
-		show: true,
+		currentDayDisplayed: moment('2017-JUL-31')
+			.utc()
+			.format('DD-MMM-YYYY')
+			.toUpperCase(),
 	};
+
+	async componentWillMount() {
+		const { currentDayDisplayed } = this.state;
+		this.props.getGamesDay(currentDayDisplayed);
+	}
+
+	async componentDidUpdate(prevState, nextState) {
+		if (nextState.currentDayDisplayed !== this.state.currentDayDisplayed) {
+			this.props.getGamesDay(this.state.currentDayDisplayed);
+		}
+	}
 
 	IncrementItem = () => {
 		this.setState({
-			clicks: this.state.clicks + 1,
+			currentDayDisplayed: moment(this.state.currentDayDisplayed)
+				.add(1, 'd')
+				.format('DD-MMM-YYYY')
+				.toUpperCase(),
 		});
 	};
 
 	DecreaseItem = () => {
-		this.setState({ clicks: this.state.clicks - 1 });
-	};
-
-	ToggleClick = () => {
-		this.setState({ show: !this.state.show });
+		this.setState({
+			currentDayDisplayed: moment(this.state.currentDayDisplayed)
+				.subtract(1, 'd')
+				.format('DD-MMM-YYYY')
+				.toUpperCase(),
+		});
 	};
 
 	render() {
+		const { gamesDay, teamsAll } = this.props;
 		return (
 			<div className="widget">
 				<div className="widget-title">
-					<h3>Recent Result</h3>
+					<h3>{moment(this.state.currentDayDisplayed).format('MMMM Do YYYY')}</h3>
 					<div className="recent-navigation arrow-style">
 						<button className="recent-re-next">
 							<i className="fa fa-chevron-left" aria-hidden="true" onClick={this.DecreaseItem} />
@@ -38,83 +61,47 @@ class componentName extends Component {
 				</div>
 				<div className="widget-container">
 					<div className="item">
-						<div className="recent-items">
-							<a href="#">
-								<h4>06 Aug, 2016</h4>
-								<div className="result-coutry-area">
-									<div className="result-item">
-										<button onClick={this.ToggleClick}>{this.state.show ? 'Hide number' : 'Show number'}</button>
-										{this.state.show ? <h2>{this.state.clicks}</h2> : ''}
+						{gamesDay.map(key => (
+							<div className="recent-items" key={key.GameID}>
+								<a href="#">
+									<div className="result-coutry-area">
+										<div className="result-item">
+											<p>{key.AwayTeam}</p>
+											{teamsAll.map(
+												item =>
+													item.Key === `${key.AwayTeam}` ? (
+														<img
+															src={`${item.WikipediaLogoUrl}`}
+															key={item.TeamID}
+															alt={`${item.City} ${item.Name} Logo`}
+														/>
+													) : (
+														false
+													)
+											)}
+										</div>
+										<div className="result-item">
+											<p>{`${key.AwayTeamRuns} - ${key.HomeTeamRuns}`}</p>
+										</div>
+										<div className="result-item">
+											{teamsAll.map(
+												item =>
+													item.Key === `${key.HomeTeam}` ? (
+														<img
+															src={`${item.WikipediaLogoUrl}`}
+															key={item.TeamID}
+															alt={`${item.City} ${item.Name} Logo`}
+														/>
+													) : (
+														false
+													)
+											)}
+											<p>{key.HomeTeam}</p>
+										</div>
 									</div>
-									<div className="result-item">
-										<p>1-0</p>
-									</div>
-									<div className="result-item">
-										<Moment
-											onChange={val => {
-												console.log(val);
-											}}
-										>
-											1976-04-19T12:59-0500
-										</Moment>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div className="recent-items">
-							<a href="#">
-								<h4>06 Aug, 2016</h4>
-								<div className="result-coutry-area">
-									<div className="result-item">
-										<p>Portogal</p>
-										<img src="http://via.placeholder.com/36x36" alt="" />
-									</div>
-									<div className="result-item">
-										<p>1-0</p>
-									</div>
-									<div className="result-item">
-										<img src="http://via.placeholder.com/36x36" alt="" />
-										<p>France</p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div className="recent-items">
-							<a href="#">
-								<h4>06 Aug, 2016</h4>
-								<div className="result-coutry-area">
-									<div className="result-item">
-										<p>Portogal</p>
-										<img src="http://via.placeholder.com/36x36" alt="" />
-									</div>
-									<div className="result-item">
-										<p>1-0</p>
-									</div>
-									<div className="result-item">
-										<img src="http://via.placeholder.com/36x36" alt="" />
-										<p>France</p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div className="recent-items">
-							<a href="#">
-								<h4>06 Aug, 2016</h4>
-								<div className="result-coutry-area">
-									<div className="result-item">
-										<p>Portogal</p>
-										<img src="http://via.placeholder.com/36x36" alt="" />
-									</div>
-									<div className="result-item">
-										<p>1-0</p>
-									</div>
-									<div className="result-item">
-										<img src="http://via.placeholder.com/36x36" alt="" />
-										<p>France</p>
-									</div>
-								</div>
-							</a>
-						</div>
+								</a>
+							</div>
+						))}
 					</div>
 				</div>
 			</div>
@@ -122,4 +109,26 @@ class componentName extends Component {
 	}
 }
 
-export default componentName;
+Games.propTypes = {
+	teamsAll: PropTypes.arrayOf(PropTypes.object).isRequired,
+	gamesDay: PropTypes.arrayOf(PropTypes.object).isRequired,
+	getGamesDay: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+	gamesDay: state.games.gamesDay,
+	gamesDayDate: state.games.gamesDayDate,
+	gamesDayLoaded: state.games.gamesDayLoaded,
+	teamsAll: state.teams.teamsAll,
+	teamsAllLoaded: state.teams.teamsAllLoaded,
+});
+
+const mapDispatchToProps = dispatch =>
+	bindActionCreators(
+		{
+			getGamesDay,
+		},
+		dispatch
+	);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Games);

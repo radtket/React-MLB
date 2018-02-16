@@ -10,7 +10,7 @@ class GameScore extends Component {
 	async componentWillMount() {
 		const { gamesDayLoaded, gamesDayLoadedAt } = this.props;
 		if (!gamesDayLoaded || new Date() - gamesDayLoadedAt > oneHour) {
-			this.props.getGamesDay();
+			this.props.getGamesDay('2017-JUL-31');
 		}
 	}
 	render() {
