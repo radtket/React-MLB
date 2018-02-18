@@ -4,7 +4,7 @@ const initialState = {
 	playersOnTeam: [],
 	playersOnTeamLoaded: false,
 	playersOnTeamLoadedAt: null,
-	teamBoxScore: [],
+	teamBoxScore: {},
 	teamBoxScoreLoaded: false,
 };
 
