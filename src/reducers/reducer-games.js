@@ -1,11 +1,13 @@
 import moment from 'moment';
-import { GET_GAMES_DAY } from '../actions/actions-games';
+import { GET_GAMES_DAY, GET_GAMES_TEAM_DAY } from '../actions/actions-games';
 
 const initialState = {
 	gamesDay: [],
 	gamesDayDate: {},
 	gamesDayLoaded: false,
 	gamesDayLoadedAt: null,
+	gamesTeam: {},
+	gamesTeamLoaded: false,
 };
 
 export default function(state = initialState, action) {
@@ -21,6 +23,12 @@ export default function(state = initialState, action) {
 					.toUpperCase(),
 				gamesDayLoaded: true,
 				gamesDayLoadedAt: new Date(),
+			};
+		case GET_GAMES_TEAM_DAY:
+			return {
+				...state,
+				gamesTeam: data,
+				gamesTeamLoaded: true,
 			};
 		default:
 			return state;

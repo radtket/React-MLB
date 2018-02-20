@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
@@ -63,7 +64,7 @@ class Games extends Component {
 					<div className="item">
 						{gamesDay.map(key => (
 							<div className="recent-items" key={key.GameID}>
-								<a href="#">
+								<Link to={`/scores/${key.GameID}`}>
 									<div className="result-coutry-area">
 										<div className="result-item">
 											<p>{key.AwayTeam}</p>
@@ -99,7 +100,7 @@ class Games extends Component {
 											<p>{key.HomeTeam}</p>
 										</div>
 									</div>
-								</a>
+								</Link>
 							</div>
 						))}
 					</div>

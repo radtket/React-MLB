@@ -4,22 +4,35 @@ import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { getSingleBoxScore } from '../../actions/actions-team';
+import { getGamesDay, getGamesTeamDay } from '../../actions/actions-games';
 import { getTeamLogos } from '../../actions/actions-teams-all';
 import './TeamBoxScore.css';
 
 class TeamBoxScore extends Component {
 	async componentWillMount() {
-		const { teamBoxScoreLoaded } = this.props;
-		if (!teamBoxScoreLoaded) {
-			this.props.getSingleBoxScore(14625);
+		const { gamesDayLoaded } = this.props;
+		if (!gamesDayLoaded) {
+			await this.props.getGamesDay('2017-JUL-31');
+			await this.props.getGamesTeamDay(`${this.props.teamID}`);
+		} else {
+			await this.props.getGamesTeamDay(`${this.props.teamID}`);
 		}
 	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.gamesTeam && nextProps.gamesTeam !== this.props.gamesTeam) {
+			nextProps.getSingleBoxScore(nextProps.gamesTeam.GameID);
+		}
+	}
+
 	render() {
 		const { Innings, Game, TeamGames } = this.props.teamBoxScore;
 		const { teamsLogos } = this.props;
+
 		if (!this.props.teamBoxScoreLoaded) {
-			return <p>1</p>;
+			return <p className="d-none">No Game</p>;
 		}
+
 		return (
 			<table className="table table-responsive table-bs">
 				<thead>
@@ -83,9 +96,23 @@ TeamBoxScore.propTypes = {
 	}).isRequired,
 	teamBoxScoreLoaded: PropTypes.bool.isRequired,
 	teamsLogos: PropTypes.objectOf(PropTypes.string).isRequired,
+	getGamesDay: PropTypes.func.isRequired,
+	getGamesTeamDay: PropTypes.func.isRequired,
+	gamesTeam: PropTypes.shape({
+		GameID: PropTypes.number,
+	}).isRequired,
+	teamID: PropTypes.string,
+};
+
+TeamBoxScore.defaultProps = {
+	teamID: '',
 };
 
 const mapStateToProps = state => ({
+	gamesDay: state.games.gamesDay,
+	gamesDayLoaded: state.games.gamesDayLoaded,
+	gamesTeam: state.games.gamesTeam,
+	gamesTeamLoaded: state.games.gamesTeamLoaded,
 	teamBoxScore: state.team.teamBoxScore,
 	teamBoxScoreLoaded: state.team.teamBoxScoreLoaded,
 	teamsLogos: state.teams.teamsLogos,
@@ -97,6 +124,8 @@ const mapDispatchToProps = dispatch =>
 		{
 			getSingleBoxScore,
 			getTeamLogos,
+			getGamesDay,
+			getGamesTeamDay,
 		},
 		dispatch
 	);

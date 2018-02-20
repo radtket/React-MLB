@@ -62,13 +62,18 @@ class TeamStandings extends Component {
 }
 
 TeamStandings.propTypes = {
-	currentTeamDivision: PropTypes.string.isRequired,
-	currentTeamLeague: PropTypes.string.isRequired,
+	currentTeamDivision: PropTypes.string,
+	currentTeamLeague: PropTypes.string,
 	teamsStandings: PropTypes.arrayOf(PropTypes.object).isRequired,
 	getTeamsStandings: PropTypes.func.isRequired,
 	getTeamLogos: PropTypes.func.isRequired,
 	teamsLogos: PropTypes.objectOf(PropTypes.string).isRequired,
 	teamsLogosLoaded: PropTypes.bool.isRequired,
+};
+
+TeamStandings.defaultProps = {
+	currentTeamDivision: '',
+	currentTeamLeague: '',
 };
 
 const mapStateToProps = state => ({

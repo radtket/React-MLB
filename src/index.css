@@ -2,6 +2,10 @@ body {
 	font-family: sans-serif;
 }
 
+.d-none {
+  display: none;
+}
+
 .mb-24 {
 	margin-bottom: 24px;
 }

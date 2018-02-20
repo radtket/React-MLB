@@ -8,7 +8,7 @@ const Home = props => (
 		<div className="row">
 			<div className="col-lg-8">
 				<h1>Team Home</h1>
-				<TeamBoxScoreComponent />
+				<TeamBoxScoreComponent teamID={props.teamID} />
 			</div>
 			<aside className="col-lg-4">
 				<TeamStandingsComponent
@@ -21,8 +21,15 @@ const Home = props => (
 );
 
 Home.propTypes = {
-	currentTeamDivision: PropTypes.string.isRequired,
-	currentTeamLeague: PropTypes.string.isRequired,
+	currentTeamDivision: PropTypes.string,
+	currentTeamLeague: PropTypes.string,
+	teamID: PropTypes.string,
+};
+
+Home.defaultProps = {
+	currentTeamDivision: '',
+	currentTeamLeague: '',
+	teamID: '',
 };
 
 export default Home;

@@ -38,6 +38,7 @@ class Team extends Component {
 			SecondaryColor,
 			League,
 			Division,
+			Key,
 		} = this.props.singleTeam;
 		return (
 			<div>
@@ -54,7 +55,7 @@ class Team extends Component {
 					<Route
 						exact
 						path={`${url}`}
-						render={() => <Home num="2" currentTeamLeague={League} currentTeamDivision={Division} />}
+						render={() => <Home num="2" teamID={Key} currentTeamLeague={League} currentTeamDivision={Division} />}
 					/>
 					<Route exact path={`${url}/stats`} component={Stats} />
 					<Route exact path={`${url}/schedule`} component={Schedule} />
@@ -86,6 +87,7 @@ Team.propTypes = {
 		SecondaryColor: PropTypes.string,
 		League: PropTypes.string,
 		Division: PropTypes.string,
+		Key: PropTypes.string,
 	}).isRequired,
 	resetSingleTeam: PropTypes.func.isRequired,
 };
